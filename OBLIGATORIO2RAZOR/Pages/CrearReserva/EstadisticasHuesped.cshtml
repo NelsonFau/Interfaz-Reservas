@@ -1,0 +1,42 @@
+﻿@page
+@model OBLIGATORIO2RAZOR.Pages.CrearReserva.EstadisticasHuespedModel
+@{
+    ViewData["Title"] = "Estadísticas de Habitaciones Más Reservadas por Usuario";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">@ViewData["Title"]</h1>
+
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Habitación</th>
+                    <th>Cantidad de Reservas</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var estadistica in Model.UsuariosEstadisticas)
+                {
+                    <tr>
+                        <td>@estadistica.HuespedId</td>
+                        <td>@estadistica.NumeroHabitacion</td>
+                        <td>@estadistica.CantidadReservas</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

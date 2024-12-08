@@ -1,0 +1,76 @@
+﻿@page
+@model OBLIGATORIO2RAZOR.Pages.CrearReserva.EditarReservaModel
+@{
+    ViewData["Title"] = "Editar Reserva";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="text-info">Editar Reserva</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="alert alert-danger">
+                    @Model.ErrorMessage
+                </div>
+            }
+
+            <input type="hidden" asp-for="Reserva.ID" />
+
+            <div class="form-group">
+                <label for="numeroHabitacion">Número de Habitación</label>
+                <select class="form-control" asp-for="Reserva.numeroHabitacion" id="numeroHabitacion" name="numeroHabitacion">
+                    <option value="">Seleccione una habitación</option>
+                        @foreach (var habitacion in Model.Habitaciones)
+                        {
+                            var selectedAttribute = habitacion.Numero == Model.Reserva.numeroHabitacion ? "selected" : "";
+                            <option value="@habitacion.Numero">@Html.Raw(selectedAttribute) @habitacion.TipoHabitacion</option>
+                        }
+                </select>
+                <span asp-validation-for="Reserva.numeroHabitacion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="FechaI">Fecha de Inicio</label>
+                <input type="date" class="form-control" id="FechaI" asp-for="Reserva.FechaI" required />
+                <span asp-validation-for="Reserva.FechaI" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="FechaF">Fecha de Fin</label>
+                <input type="date" class="form-control" id="FechaF" asp-for="Reserva.FechaF" required />
+                <span asp-validation-for="Reserva.FechaF" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="UsuarioId">Huésped</label>
+                <select class="form-control" asp-for="Reserva.HuespedId" id="HuespedId" name="HuespedId">
+                    <option value="">Seleccione un huésped</option>
+                    @foreach (var usuario in Model.Usuarios)
+                    {
+                        var selectedAttribute = usuario.ID == Model.Reserva.HuespedId ? "selected" : "";
+                        <option value="@usuario.ID">@Html.Raw(selectedAttribute) @usuario.Nombre</option>
+                    }
+                </select>
+                <span asp-validation-for="Reserva.HuespedId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Actualizar Reserva</button>
+            </div>
+
+            <div class="form-group">
+                <a asp-page="Index" class="btn btn-secondary">Volver a la lista</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

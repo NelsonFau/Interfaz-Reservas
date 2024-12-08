@@ -1,0 +1,33 @@
+﻿@page
+@{
+    ViewData["Title"] = "Bienvenido a Hotel ROMA";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="/css/EditarIndex.css" rel="stylesheet"> <!-- Vinculando el archivo CSS -->
+</head>
+<body>
+    <main role="main" class="pb-3">
+        <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="text-center">
+                <h2 class="display-4 text-primary">Hotel Estrella</h2>
+                <p class="lead text-secondary">Elige una opción:</p>
+                <div class="btn-group-vertical" role="group" aria-label="Opciones">
+                    <a asp-page="/LoginUsuario/LoginUsuario" class="btn btn-primary btn-lg mb-3">
+                        Registrarse
+                    </a>
+                    <a href="/InicioSesionUser/InicioSesion" class="btn btn-secondary btn-lg mb-3">Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

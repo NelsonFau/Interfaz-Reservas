@@ -1,0 +1,96 @@
+﻿@page
+@model OBLIGATORIO2RAZOR.Pages.CrearReserva.IndexReservasModel
+@{
+	ViewData["Title"] = "Lista de cursos";
+}
+<div class="card">
+	<div class="card-header">
+		<div class="row">
+			<div class="col-sm-6">
+				<h2 class="text-info">Lista de cursos</h2>
+			</div>
+			<div class="col-sm-6">
+				<a asp-page="CrearReserva" class="btn  btn-info">
+					Crear nuevo curso
+				</a>
+				<a asp-page="HabitacionMasReservada" class="btn  btn-info">
+					Habitación más Reservada
+				</a>
+				<a asp-page="EstadisticasHuesped" class="btn btn-info">
+					Estadisticas Huespedes
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+	</div>
+	<div class="card-body">
+		<form method="post">
+			@if (Model.Reservas != null && Model.Reservas.Any())
+			{
+			<table class="table table-striped border">
+				<tr class="table-secondary">
+					<th>
+						@Html.DisplayNameFor(m => m.Reservas.First().ID)
+					</th>
+					<th>
+						@Html.DisplayNameFor(m => m.Reservas.First().numeroHabitacion)
+					</th>
+					<th>
+						@Html.DisplayNameFor(m => m.Reservas.First().HuespedId)
+					</th>
+					<th>
+						@Html.DisplayNameFor(m => m.Reservas.First().FechaI)
+						41
+					</th>
+					<th>
+						@Html.DisplayNameFor(m => m.Reservas.First().FechaF)
+					</th>
+					<th>
+						@Html.DisplayNameFor(m => m.Reservas.First().FechaR)
+					</th>
+					<th>
+						Acciones
+					</th>
+				</tr>
+				@foreach (var item in Model.Reservas)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(m => item.ID)
+						</td>
+						<td>
+							@Html.DisplayFor(m => item.numeroHabitacion)
+						</td>
+						<td>
+							@Html.DisplayFor(m => item.HuespedId)
+						</td>
+						<td>
+							@Html.DisplayFor(m => item.FechaI)
+						</td>
+						<td>
+							@Html.DisplayFor(m => item.FechaF)
+						</td>
+						<td>
+							@Html.DisplayFor(m => item.FechaR)
+						</td>
+						<td>
+							<a asp-route-id="@item.ID" asp-page="EditarReserva"
+							   class="btn btn-success btn-sm">Editar</a>
+									<button type="submit" name="id" value="@item.ID"
+												asp-page-handler="Borrar"
+												class="btn btn-danger btn-sm"
+												onclick="return confirm('¿Está seguro de querer borrar la reserva?')">
+											Borrar
+									</button>
+						</td>
+					</tr>
+				}
+			</table>
+		}
+		else
+		{
+			<p>No hay cursos disponibles</p>
+		}
+		</form>
+</div>

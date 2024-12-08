@@ -1,0 +1,63 @@
+﻿
+body {
+    background-color: #f0f8ff; /* Fondo de color azul claro */
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    color: #333; /* Color del texto */
+}
+
+.main-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    background-image: url(/image/FondoIndex.jpg); /* Ruta relativa a la imagen local */
+}
+
+
+h2 {
+    color: #007bff;
+}
+
+
+.btn {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Color personalizado para el botón 'Registrarse' */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #000000;
+    color: white; /* Texto blanco */
+}
+
+    .btn-primary:hover {
+        background-color: #007bff;
+        border-color: #000000;
+    }
+
+.btn-secondary {
+    background-color: #007bff;
+    border-color: #000000;
+    color: white; 
+}
+
+    .btn-secondary:hover {
+        background-color: #007bff;
+        border-color: #000000;
+    }
+
+/* Color para el botón 'Recuperar Contraseña' */
+.btn-warning {
+    background-color: #007bff;
+    border-color: #000000;
+    color: white; 
+}
+
+    .btn-warning:hover {
+        background-color: #007bff;
+        border-color: #000000;
+    }
