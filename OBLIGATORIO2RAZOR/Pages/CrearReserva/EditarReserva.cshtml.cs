@@ -10,7 +10,7 @@ namespace OBLIGATORIO2RAZOR.Pages.CrearReserva
     {
 		private readonly AplicationDbContext _contexto;
 		[BindProperty]
-		public Reserva Reserva { get; set; } 
+		public Reserva? Reserva { get; set; } 
 
 		public List<Habitacion> Habitaciones { get; set; } 
 		public List<Usuario> Usuarios { get; set; }
@@ -21,36 +21,45 @@ namespace OBLIGATORIO2RAZOR.Pages.CrearReserva
 		{
 			_contexto = context;
 		}
-
         public async Task<IActionResult> OnGetAsync(int id)
         {
+            // Primero verificamos si la reserva existe
             Reserva = await _contexto.Reservas
-                .FirstOrDefaultAsync(r => r.ID == id); 
+                .FirstOrDefaultAsync(r => r.ID == id);
 
+            // Si no se encuentra la reserva, retornamos NotFound
             if (Reserva == null)
             {
-                return NotFound();  
+                return NotFound();
             }
 
+            // Cargamos las habitaciones y los usuarios solo si la reserva existe
             Habitaciones = await _contexto.Habitaciones.ToListAsync();
             Usuarios = await _contexto.Usuarios.ToListAsync();
 
             return Page();
         }
 
-
         public async Task<IActionResult> OnPostAsync()
-		{
-			if (!ModelState.IsValid)
-			{
-				ErrorMessage = "Hubo un error en el formulario.";
-				return Page();
-			}
+        {
+            if (!ModelState.IsValid)
+            {
+                ErrorMessage = "Hubo un error en el formulario.";
+                return Page();
+            }
 
-			_contexto.Update(Reserva);
-			await _contexto.SaveChangesAsync();
+            // Comprobamos si la propiedad Reserva no es nula antes de intentar actualizarla
+            if (Reserva == null)
+            {
+                ErrorMessage = "No se encontró la reserva.";
+                return Page();
+            }
 
-			return RedirectToPage("./Index");
-		}
-	}
+            _contexto.Update(Reserva);
+            await _contexto.SaveChangesAsync();
+
+            return RedirectToPage("./Index");
+        }
+
+    }
 }

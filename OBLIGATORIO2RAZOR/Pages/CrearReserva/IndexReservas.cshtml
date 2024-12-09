@@ -1,17 +1,17 @@
 ﻿@page
 @model OBLIGATORIO2RAZOR.Pages.CrearReserva.IndexReservasModel
 @{
-	ViewData["Title"] = "Lista de cursos";
+	ViewData["Title"] = "Lista de Reservas";
 }
 <div class="card">
 	<div class="card-header">
 		<div class="row">
 			<div class="col-sm-6">
-				<h2 class="text-info">Lista de cursos</h2>
+				<h2 class="text-info">Lista de reservas</h2>
 			</div>
 			<div class="col-sm-6">
 				<a asp-page="CrearReserva" class="btn  btn-info">
-					Crear nuevo curso
+					Crear nueva reserva
 				</a>
 				<a asp-page="HabitacionMasReservada" class="btn  btn-info">
 					Habitación más Reservada
@@ -90,7 +90,7 @@
 		}
 		else
 		{
-			<p>No hay cursos disponibles</p>
+			<p>No hay reservas disponibles</p>
 		}
 		</form>
 </div>
